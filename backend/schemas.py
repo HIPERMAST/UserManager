@@ -1,8 +1,7 @@
-import datetime as dt
-
+# Import required modules
 import pydantic as pyd
         
-
+# Admin schemas
 class AdminBase(pyd.BaseModel):
     email: str
     
@@ -19,7 +18,7 @@ class Admin(AdminBase):
         ormMode = True
         
         
-        
+# User schemas 
 class UserBase(pyd.BaseModel):
     avatar: str
     email: str

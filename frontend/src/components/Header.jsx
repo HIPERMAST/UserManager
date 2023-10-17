@@ -1,5 +1,7 @@
+// Import React
 import React from "react";
 
+// Header component
 const Header = ({ title }) => {
   return (
     <div className="has-text-centered m-6">

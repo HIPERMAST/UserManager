@@ -1,14 +1,16 @@
+// Import React, useEffect, useState and components
 import React, { useEffect, useState } from "react";
-
 import Login from "./components/Login.jsx";
 import Footer from "./components/Header.jsx";
 import Table from "./components/Table";
 
+
+// App component
 const App = () => {
   const [message, setMessage] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
-
+  // Fetch welcome message from backend
   const getWelcomeMessage = async () => {
     const requestOptions = {
       method: "GET",

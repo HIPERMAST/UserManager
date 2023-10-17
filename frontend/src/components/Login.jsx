@@ -1,12 +1,14 @@
+// Import React, useState and components
 import React, { useState } from "react";
 import ErrorMessage from "./ErrorMessage";
-import "./Login.css"; // Importa el archivo CSS
+import "./Login.css";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Submit login data to backend
   const submitLogin = async () => {
     const requestOptions = {
       method: "POST",
@@ -16,9 +18,6 @@ const Login = ({ onLogin }) => {
 
     const response = await fetch("http://localhost:8000/api/admins/me", requestOptions);
     const data = await response.json();
-
-    console.log(response.ok);
-    console.log(JSON.stringify({ email: email, hashedPW: password }));
 
     if (!response.ok) {
       setErrorMessage(data.detail);

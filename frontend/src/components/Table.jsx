@@ -1,3 +1,7 @@
+// Import React, useEffect and useState
+// Import Radar for the chart
+// Import Chart.js library and the necessary adapters if needed
+// Import components
 import React, { useEffect, useState } from "react";
 import ErrorMessage from "./ErrorMessage";
 import UserModal from "./UserModal";
@@ -14,6 +18,7 @@ import "chartjs-adapter-moment"; // Import necessary adapters if needed
 import "chartjs-adapter-luxon";
 import "./Table.css"; // Import your custom CSS file if needed
 
+// Register the necessary components for Chart.js
 ChartJS.register(LineElement, PointElement, Tooltip, Legend, RadialLinearScale);
 
 const Table = () => {
@@ -23,6 +28,7 @@ const Table = () => {
   const [activeModal, setActiveModal] = useState(false);
   const [id, setId] = useState(null);
 
+  // Fetch users from backend
   const getUsers = async () => {
     const requestOptions = {
       method: "GET",
@@ -52,34 +58,6 @@ const Table = () => {
     setActiveModal(!activeModal);
     getUsers();
     setId(null);
-  };
-
-  const radarData = {
-    labels: [
-      "Python",
-      "Sql",
-      "Java",
-      "C++",
-      "C#",
-      "Javascript",
-      "React",
-      "Angular",
-      "Spark",
-      "Node",
-    ],
-    datasets:
-      loaded && users
-        ? users.map((user) => ({
-            label: `${user.firstName} ${user.lastName}`,
-            data: user.skills.split(",").map((skill) => skill.trim().length),
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "rgba(75,192,192,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(75,192,192,1)",
-          }))
-        : [],
   };
 
   return (

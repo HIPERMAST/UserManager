@@ -1,5 +1,7 @@
+// Import React, useEffect and useState
 import React, { useEffect, useState } from "react";
 
+// UserModal component
 const UserModal = ({ active, handleModal, id, setErrorMessage }) => {
   const [avatar, setAvatar] = useState("");
   const [email, setEmail] = useState("");
@@ -8,6 +10,7 @@ const UserModal = ({ active, handleModal, id, setErrorMessage }) => {
   const [position, setPosition] = useState("");
   const [skills, setSkills] = useState("");
 
+  // Fetch user data from backend
   useEffect(() => {
     const getUser = async () => {
       const requestOptions = {
