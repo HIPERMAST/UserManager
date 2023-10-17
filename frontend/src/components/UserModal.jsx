@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const UserModal = ({ active, handleModal, token, id, setErrorMessage }) => {
+const UserModal = ({ active, handleModal, id, setErrorMessage }) => {
   const [avatar, setAvatar] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -22,28 +22,20 @@ const UserModal = ({ active, handleModal, token, id, setErrorMessage }) => {
         setErrorMessage("Could not get the user");
       } else {
         const data = await response.json();
+        setAvatar(data.avatar);
         setFirstName(data.first_name);
         setLastName(data.last_name);
         setPosition(data.position);
         setEmail(data.email);
         setSkills(data.skills);
-        setAvatar(data.avatar);
       }
     };
 
     if (id) {
       getUser();
     }
-  }, [id, token]);
+  }, id);
 
-  const cleanFormData = () => {
-    setFirstName("");
-    setLastName("");
-    setPosition("");
-    setEmail("");
-    setSkills("");
-    setAvatar("");
-  };
 
   return (
     <div className={`modal ${active && "is-active"}`}>
